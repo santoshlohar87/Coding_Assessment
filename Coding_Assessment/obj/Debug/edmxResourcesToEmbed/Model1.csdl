@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Xplor_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="MBID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="aliases" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ISO_codes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="begin_Dates" Type="DateTime" Precision="0" />
+    <Property Name="end_dates" Type="DateTime" Precision="0" />
+    <Property Name="disambiguation_comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="MBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="MBID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sort_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="areas" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IPI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ISNI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="aliases" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Artist_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="begin_dates" Type="DateTime" Precision="0" />
+    <Property Name="End_dates" Type="DateTime" Precision="0" />
+    <Property Name="disambiguation_comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="MBID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Xplor_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Areas" EntityType="Self.Area" />
+    <EntitySet Name="Artists" EntityType="Self.Artist" />
+    <EntitySet Name="Recordings" EntityType="Xplor_DBModel.Recording" />
+    <FunctionImport Name="PRC_GET_ARTIST">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Recording">
+    <Key>
+      <PropertyRef Name="recordid" />
+    </Key>
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="artist_credit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="duration" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ISRC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PUIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="disambiguation_comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="MBID" Type="Int32" />
+    <Property Name="recordid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+</Schema>

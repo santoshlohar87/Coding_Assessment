@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Xplor_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Xplor_DB.dbo.Areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="MBID" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="aliases" Type="varchar" MaxLength="100" />
+          <Property Name="type" Type="varchar" MaxLength="100" />
+          <Property Name="ISO_codes" Type="varchar" MaxLength="100" />
+          <Property Name="begin_Dates" Type="date" />
+          <Property Name="end_dates" Type="date" />
+          <Property Name="disambiguation_comment" Type="varchar" MaxLength="300" />
+          <Property Name="MBID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Xplor_DB.dbo.Artists' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Artists">
+          <Key>
+            <PropertyRef Name="MBID" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="sort_name" Type="varchar" MaxLength="100" />
+          <Property Name="areas" Type="varchar" MaxLength="100" />
+          <Property Name="IPI" Type="varchar" MaxLength="100" />
+          <Property Name="ISNI" Type="varchar" MaxLength="100" />
+          <Property Name="aliases" Type="varchar" MaxLength="100" />
+          <Property Name="Artist_type" Type="varchar" MaxLength="100" />
+          <Property Name="begin_dates" Type="date" />
+          <Property Name="End_dates" Type="date" />
+          <Property Name="disambiguation_comment" Type="varchar" MaxLength="300" />
+          <Property Name="MBID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Xplor_DB.dbo.Recordings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Recordings">
+          <Key>
+            <PropertyRef Name="recordid" />
+          </Key>
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="artist_credit" Type="varchar" MaxLength="100" />
+          <Property Name="duration" Type="varchar" MaxLength="100" />
+          <Property Name="ISRC" Type="varchar" MaxLength="100" />
+          <Property Name="PUIDs" Type="varchar" MaxLength="100" />
+          <Property Name="disambiguation_comment" Type="varchar" MaxLength="300" />
+          <Property Name="MBID" Type="int" />
+          <Property Name="recordid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Function Name="PRC_GET_ARTIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Xplor_DBModelStoreContainer">
+          <EntitySet Name="Areas" EntityType="Self.Areas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Areas].[Name] AS [Name], 
+    [Areas].[aliases] AS [aliases], 
+    [Areas].[type] AS [type], 
+    [Areas].[ISO_codes] AS [ISO_codes], 
+    [Areas].[begin_Dates] AS [begin_Dates], 
+    [Areas].[end_dates] AS [end_dates], 
+    [Areas].[disambiguation_comment] AS [disambiguation_comment], 
+    [Areas].[MBID] AS [MBID]
+    FROM [dbo].[Areas] AS [Areas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Artists" EntityType="Self.Artists" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Artists].[Name] AS [Name], 
+    [Artists].[sort_name] AS [sort_name], 
+    [Artists].[areas] AS [areas], 
+    [Artists].[IPI] AS [IPI], 
+    [Artists].[ISNI] AS [ISNI], 
+    [Artists].[aliases] AS [aliases], 
+    [Artists].[Artist_type] AS [Artist_type], 
+    [Artists].[begin_dates] AS [begin_dates], 
+    [Artists].[End_dates] AS [End_dates], 
+    [Artists].[disambiguation_comment] AS [disambiguation_comment], 
+    [Artists].[MBID] AS [MBID]
+    FROM [dbo].[Artists] AS [Artists]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Recordings" EntityType="Self.Recordings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Recordings].[Title] AS [Title], 
+    [Recordings].[artist_credit] AS [artist_credit], 
+    [Recordings].[duration] AS [duration], 
+    [Recordings].[ISRC] AS [ISRC], 
+    [Recordings].[PUIDs] AS [PUIDs], 
+    [Recordings].[disambiguation_comment] AS [disambiguation_comment], 
+    [Recordings].[MBID] AS [MBID], 
+    [Recordings].[recordid] AS [recordid]
+    FROM [dbo].[Recordings] AS [Recordings]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Xplor_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="MBID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="aliases" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISO_codes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="begin_Dates" Type="DateTime" Precision="0" />
+          <Property Name="end_dates" Type="DateTime" Precision="0" />
+          <Property Name="disambiguation_comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="MBID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sort_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="areas" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IPI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISNI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="aliases" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Artist_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="begin_dates" Type="DateTime" Precision="0" />
+          <Property Name="End_dates" Type="DateTime" Precision="0" />
+          <Property Name="disambiguation_comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MBID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Xplor_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="Recordings" EntityType="Xplor_DBModel.Recording" />
+          <FunctionImport Name="PRC_GET_ARTIST">
+            <Parameter Name="NAME" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Recording">
+          <Key>
+            <PropertyRef Name="recordid" />
+          </Key>
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="artist_credit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISRC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PUIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="disambiguation_comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MBID" Type="Int32" />
+          <Property Name="recordid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Xplor_DBModelStoreContainer" CdmEntityContainer="Xplor_DBEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="Xplor_DBModel.Area">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="aliases" ColumnName="aliases" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="ISO_codes" ColumnName="ISO_codes" />
+                <ScalarProperty Name="begin_Dates" ColumnName="begin_Dates" />
+                <ScalarProperty Name="end_dates" ColumnName="end_dates" />
+                <ScalarProperty Name="disambiguation_comment" ColumnName="disambiguation_comment" />
+                <ScalarProperty Name="MBID" ColumnName="MBID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="Xplor_DBModel.Artist">
+              <MappingFragment StoreEntitySet="Artists">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sort_name" ColumnName="sort_name" />
+                <ScalarProperty Name="areas" ColumnName="areas" />
+                <ScalarProperty Name="IPI" ColumnName="IPI" />
+                <ScalarProperty Name="ISNI" ColumnName="ISNI" />
+                <ScalarProperty Name="aliases" ColumnName="aliases" />
+                <ScalarProperty Name="Artist_type" ColumnName="Artist_type" />
+                <ScalarProperty Name="begin_dates" ColumnName="begin_dates" />
+                <ScalarProperty Name="End_dates" ColumnName="End_dates" />
+                <ScalarProperty Name="disambiguation_comment" ColumnName="disambiguation_comment" />
+                <ScalarProperty Name="MBID" ColumnName="MBID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recordings">
+            <EntityTypeMapping TypeName="Xplor_DBModel.Recording">
+              <MappingFragment StoreEntitySet="Recordings">
+                <ScalarProperty Name="recordid" ColumnName="recordid" />
+                <ScalarProperty Name="MBID" ColumnName="MBID" />
+                <ScalarProperty Name="disambiguation_comment" ColumnName="disambiguation_comment" />
+                <ScalarProperty Name="PUIDs" ColumnName="PUIDs" />
+                <ScalarProperty Name="ISRC" ColumnName="ISRC" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="artist_credit" ColumnName="artist_credit" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PRC_GET_ARTIST" FunctionName="Xplor_DBModel.Store.PRC_GET_ARTIST" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

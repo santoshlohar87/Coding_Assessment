@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Xplor_DBModelStoreContainer" CdmEntityContainer="Xplor_DBEntities">
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="Xplor_DBModel.Area">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="aliases" ColumnName="aliases" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="ISO_codes" ColumnName="ISO_codes" />
+          <ScalarProperty Name="begin_Dates" ColumnName="begin_Dates" />
+          <ScalarProperty Name="end_dates" ColumnName="end_dates" />
+          <ScalarProperty Name="disambiguation_comment" ColumnName="disambiguation_comment" />
+          <ScalarProperty Name="MBID" ColumnName="MBID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="Xplor_DBModel.Artist">
+        <MappingFragment StoreEntitySet="Artists">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="sort_name" ColumnName="sort_name" />
+          <ScalarProperty Name="areas" ColumnName="areas" />
+          <ScalarProperty Name="IPI" ColumnName="IPI" />
+          <ScalarProperty Name="ISNI" ColumnName="ISNI" />
+          <ScalarProperty Name="aliases" ColumnName="aliases" />
+          <ScalarProperty Name="Artist_type" ColumnName="Artist_type" />
+          <ScalarProperty Name="begin_dates" ColumnName="begin_dates" />
+          <ScalarProperty Name="End_dates" ColumnName="End_dates" />
+          <ScalarProperty Name="disambiguation_comment" ColumnName="disambiguation_comment" />
+          <ScalarProperty Name="MBID" ColumnName="MBID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recordings">
+      <EntityTypeMapping TypeName="Xplor_DBModel.Recording">
+        <MappingFragment StoreEntitySet="Recordings">
+          <ScalarProperty Name="recordid" ColumnName="recordid" />
+          <ScalarProperty Name="MBID" ColumnName="MBID" />
+          <ScalarProperty Name="disambiguation_comment" ColumnName="disambiguation_comment" />
+          <ScalarProperty Name="PUIDs" ColumnName="PUIDs" />
+          <ScalarProperty Name="ISRC" ColumnName="ISRC" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="artist_credit" ColumnName="artist_credit" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PRC_GET_ARTIST" FunctionName="Xplor_DBModel.Store.PRC_GET_ARTIST" />
+  </EntityContainerMapping>
+</Mapping>

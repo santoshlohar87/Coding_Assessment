@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Xplor_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Xplor_DB.dbo.Areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Areas">
+    <Key>
+      <PropertyRef Name="MBID" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="aliases" Type="varchar" MaxLength="100" />
+    <Property Name="type" Type="varchar" MaxLength="100" />
+    <Property Name="ISO_codes" Type="varchar" MaxLength="100" />
+    <Property Name="begin_Dates" Type="date" />
+    <Property Name="end_dates" Type="date" />
+    <Property Name="disambiguation_comment" Type="varchar" MaxLength="300" />
+    <Property Name="MBID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Xplor_DB.dbo.Artists' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="MBID" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="sort_name" Type="varchar" MaxLength="100" />
+    <Property Name="areas" Type="varchar" MaxLength="100" />
+    <Property Name="IPI" Type="varchar" MaxLength="100" />
+    <Property Name="ISNI" Type="varchar" MaxLength="100" />
+    <Property Name="aliases" Type="varchar" MaxLength="100" />
+    <Property Name="Artist_type" Type="varchar" MaxLength="100" />
+    <Property Name="begin_dates" Type="date" />
+    <Property Name="End_dates" Type="date" />
+    <Property Name="disambiguation_comment" Type="varchar" MaxLength="300" />
+    <Property Name="MBID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Xplor_DB.dbo.Recordings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Recordings">
+    <Key>
+      <PropertyRef Name="recordid" />
+    </Key>
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="artist_credit" Type="varchar" MaxLength="100" />
+    <Property Name="duration" Type="varchar" MaxLength="100" />
+    <Property Name="ISRC" Type="varchar" MaxLength="100" />
+    <Property Name="PUIDs" Type="varchar" MaxLength="100" />
+    <Property Name="disambiguation_comment" Type="varchar" MaxLength="300" />
+    <Property Name="MBID" Type="int" />
+    <Property Name="recordid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Function Name="PRC_GET_ARTIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAME" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="Xplor_DBModelStoreContainer">
+    <EntitySet Name="Areas" EntityType="Self.Areas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Areas].[Name] AS [Name], 
+    [Areas].[aliases] AS [aliases], 
+    [Areas].[type] AS [type], 
+    [Areas].[ISO_codes] AS [ISO_codes], 
+    [Areas].[begin_Dates] AS [begin_Dates], 
+    [Areas].[end_dates] AS [end_dates], 
+    [Areas].[disambiguation_comment] AS [disambiguation_comment], 
+    [Areas].[MBID] AS [MBID]
+    FROM [dbo].[Areas] AS [Areas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Artists" EntityType="Self.Artists" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Artists].[Name] AS [Name], 
+    [Artists].[sort_name] AS [sort_name], 
+    [Artists].[areas] AS [areas], 
+    [Artists].[IPI] AS [IPI], 
+    [Artists].[ISNI] AS [ISNI], 
+    [Artists].[aliases] AS [aliases], 
+    [Artists].[Artist_type] AS [Artist_type], 
+    [Artists].[begin_dates] AS [begin_dates], 
+    [Artists].[End_dates] AS [End_dates], 
+    [Artists].[disambiguation_comment] AS [disambiguation_comment], 
+    [Artists].[MBID] AS [MBID]
+    FROM [dbo].[Artists] AS [Artists]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Recordings" EntityType="Self.Recordings" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Recordings].[Title] AS [Title], 
+    [Recordings].[artist_credit] AS [artist_credit], 
+    [Recordings].[duration] AS [duration], 
+    [Recordings].[ISRC] AS [ISRC], 
+    [Recordings].[PUIDs] AS [PUIDs], 
+    [Recordings].[disambiguation_comment] AS [disambiguation_comment], 
+    [Recordings].[MBID] AS [MBID], 
+    [Recordings].[recordid] AS [recordid]
+    FROM [dbo].[Recordings] AS [Recordings]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
